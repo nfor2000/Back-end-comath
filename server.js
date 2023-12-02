@@ -9,7 +9,7 @@ const {errorHandler} = require('./middleware/errorMiddleware')
 const app = express();
 // MongoDB Configuration
 connectDb()
-const port = process.env.PORT || 6666;
+const port = process.env.PORT || 4444;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
