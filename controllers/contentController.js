@@ -2,7 +2,6 @@ const asyncHandler = require("express-async-handler");
 const Content = require('../models/contentModel')
 
 const createContent = asyncHandler(async (req, res) => {
-     const url = req.protocol + '://' + req.get('host');
      const { title, description } = req.body;
 
      if (!title || !description || !req.files || !req.files['thumb'] || !req.files['video']) {
@@ -18,8 +17,8 @@ const createContent = asyncHandler(async (req, res) => {
                teacher: req.teacher._id,
                title: title,
                description: description,
-               thumbnail: url + '/public/' + thumbFile.filename,
-               video: url + '/public/' + videoFile.filename,
+               thumbnail: thumbFile.location,
+               video:  videoFile.location,
           });
 
           const result = await content.save();

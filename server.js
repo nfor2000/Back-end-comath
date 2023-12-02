@@ -16,7 +16,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(cors());
+app.use(cors({
+     origin: ['http://localhost:3000/','https://main.dqtw7z0fg7qsa.amplifyapp.com/'],
+     methods: ['GET', 'POST'],
+     allowedHeaders: ['Content-Type', 'Authorization'],
+     optionsSuccessStatus: 200,
+   }));
 
 app.use('/public', express.static('public'));
 app.use(errorHandler);

@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const registerTeacher = async (req, res) => {
-     const url = req.protocol + '://' + req.get('host')
      const {name, email, password, proffession} =  req.body
      if(!name || !email || !password || !proffession) {
           res.status(400).json({
@@ -27,7 +26,7 @@ const registerTeacher = async (req, res) => {
               email: req.body.email,
               password: hashedPassword,
               proffession:  proffession,
-              profileImg: url + '/public/' + req.file.filename
+              profileImg:req.file.location
           });
           const result = await teacher.save()
               res.status(201).json({
@@ -152,7 +151,7 @@ const loginTeacher =  async (req, res) => {
    
        if (req.file) {
          // Assuming you're using a file upload library like Multer to handle file uploads
-         teacher.profileImg = url + "/public/"+ req.file.filename; // Update the profile image path based on the uploaded file
+         teacher.profileImg = req.file.filename; // Update the profile image path based on the uploaded file
        }
    
        const updatedTeacher = await teacher.save();

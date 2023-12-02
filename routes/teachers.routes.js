@@ -6,6 +6,7 @@ const {v4:uuid} = require('uuid');
 const { teacherProtected } = require('../middleware/authMiddleware')
 const router = express.Router();
 const User = require('../models/userModel');
+const path = require("path")
 const { registerTeacher, getTeacher, loginTeacher, getAllTeachers, getTeacherById, updateTeacher } = require('../controllers/teacherController');
 
 const s3 = new S3Client({

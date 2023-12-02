@@ -5,6 +5,7 @@ const multer = require('multer');
 const {v4:uuid} = require('uuid');
 const {registerUser, loginUser, getUser, getUserById, updateUser} = require('../controllers/UserController')
 const {userProtected} = require('../middleware/authMiddleware')
+const path = require("path")
 
 const router = express.Router();
 

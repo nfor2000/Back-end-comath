@@ -7,6 +7,7 @@ const { createContent, getAllContent, getTeacherContent, getAllContentById, getV
 const router = express.Router()
 const {v4:uuid} = require('uuid') 
 const { teacherProtected } = require('../middleware/authMiddleware')
+const path = require("path")
 
 const s3 = new S3Client({
      credentials: {

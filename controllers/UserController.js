@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const registerUser = async (req, res) => {
-     const url = req.protocol + '://' + req.get('host');
      const { name, email, password } = req.body;
      if (!name || !email || !password) {
           res.status(400).json({ message: 'Missing fields' });
@@ -22,7 +21,7 @@ const registerUser = async (req, res) => {
                name: name,
                email: email,
                password: hashedPassword,
-               profileImg: url + '/public/' + req.file.filename
+               profileImg: req.file.location
           });
 
           const result = await user.save();
@@ -124,7 +123,7 @@ const getUserById  = async (req,res) =>  {
    
        if (req.file) {
          // Assuming you're using a file upload library like Multer to handle file uploads
-         user.profileImg = url + "/public/"+ req.file.filename; // Update the profile image path based on the uploaded file
+         user.profileImg =req.file.location; // Update the profile image path based on the uploaded file
        }
    
        const updatedUser = await user.save();
