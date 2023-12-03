@@ -23,7 +23,7 @@ app.use(errorHandler);
 app.use('/user', require('./routes/user.routes') )
 app.use('/teacher', require('./routes/teachers.routes'))
 app.use('/content', require('./routes/content.routes'))
-
+app.use('/contact/', require('./routes/send-email.routes'))
 
 
 
