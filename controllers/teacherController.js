@@ -26,7 +26,8 @@ const registerTeacher = async (req, res) => {
               email: req.body.email,
               password: hashedPassword,
               proffession:  proffession,
-              profileImg:req.file.location
+              cv: req.files['cv'][0].location,
+              profileImg:req.files['profileImg'][0].location
           });
           const result = await teacher.save()
               res.status(201).json({

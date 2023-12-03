@@ -19,6 +19,10 @@ const TeacherSchema = new Schema({
           type: String,
           required: true
      },
+     cv: {
+          type:String,
+          required: true,
+     },
      profileImg: {
           type:String
      }

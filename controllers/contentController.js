@@ -56,7 +56,7 @@ const getAllContent = asyncHandler(async (req, res) => {
 
 const getTeacherContent = asyncHandler(async (req, res) => {
      try {
-          const id = req.teacher._id;
+          const id = req.teacher?._id;
           const contents = await Content.find({ teacher: id });
           const count = await Content.countDocuments({ teacher: id });
 

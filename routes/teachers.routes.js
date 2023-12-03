@@ -33,7 +33,7 @@ const s3Storage = multerS3({
 // function to sanitize files and send error for unsupported files
 function sanitizeFile(file, cb) {
      // Define the allowed extension
-     const fileExts = [".png", ".jpg", ".jpeg"];
+     const fileExts = [".png", ".jpg", ".jpeg",".pdf"];
  
      // Check allowed extensions
      const isAllowedExt = fileExts.includes(
@@ -41,7 +41,7 @@ function sanitizeFile(file, cb) {
      );
  
      // Mime type must be an image
-     const isAllowedMimeType = file.mimetype.startsWith("image/");
+     const isAllowedMimeType = file.mimetype.startsWith("image/") ||  file.mimetype.startsWith("application/");
  
      if (isAllowedExt && isAllowedMimeType) {
          return cb(null, true); // no errors
@@ -52,7 +52,7 @@ function sanitizeFile(file, cb) {
  }
  
  // our middleware
- const uploadImage = multer({
+ const uploadFiles = multer({
      storage: s3Storage,
      fileFilter: (req, file, callback) => {
          sanitizeFile(file, callback)
@@ -89,7 +89,7 @@ function sanitizeFile(file, cb) {
 //      }
 //  });
 
- router.post('/register', uploadImage.single("profileImg"), registerTeacher)
+ router.post('/register',uploadFiles.fields([{name:"cv", maxCount: 1},{name:"profileImg", maxCount : 1}]), registerTeacher)
  
  router.get("/",teacherProtected, getTeacher);
 
@@ -98,7 +98,7 @@ function sanitizeFile(file, cb) {
  router.post("/login",loginTeacher);
 
  router.get('/allteachers', getAllTeachers)
- router.post("/update/",teacherProtected, uploadImage.single('profileImg'), updateTeacher)
+ router.post("/update/",teacherProtected, uploadFiles.fields([{name:"cv", maxCount: 1},{name:"profileImg", maxCount : 1}]), updateTeacher)
 
 
 
