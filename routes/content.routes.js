@@ -14,12 +14,12 @@ const s3 = new S3Client({
           accessKeyId: process.env.AWS_ACCESS_KEY_ID,
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
      },
-     region: "af-south-1"
+     region: "us-east-1"
 })
 
 const s3Storage = multerS3({
      s3: s3,
-     bucket: "myawsbucketgroup23",
+     bucket: "group23awsbucket",
      acl: "public-read",
      metadata: (req, file, cb) => {
           cb(null, {fieldname: file.fieldname})

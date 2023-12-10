@@ -10,7 +10,7 @@ router.post('/send-email', async (req, res) => {
      return
   }
 
-  const region = 'eu-north-1'; // Specify your desired region here
+  const region = 'us-east-1'; // Specify your desired region here
 
   const snsClient = new SNSClient({ region });
 
@@ -20,7 +20,7 @@ router.post('/send-email', async (req, res) => {
       Email: ${email}
       Message: ${message}
     `,
-    TopicArn: 'arn:aws:sns:eu-north-1:422134053975:aws-comath-mailer',
+    TopicArn: 'arn:aws:sns:us-east-1:417949585176:comath',
   };
 
   try {
